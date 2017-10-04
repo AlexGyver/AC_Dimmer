@@ -14,13 +14,14 @@
 
 <a id="chapter-1"></a>
 ## Папки
-- **Библиотеки** - библиотеки для дисплея и прочего, скопировать в  
+- **Library** - библиотеки для дисплея и прочего, скопировать в  
 `C:\Program Files (x86)\Arduino\libraries\` (Windows x64)  
 `C:\Program Files\Arduino\libraries\` (Windows x86)
-- **Прошивки** - прошивки для Arduino, файлы в папках открыть в Arduino IDE (читай [FAQ](#chapter-5))
+- **Sketches** - прошивки для Arduino, файлы в папках открыть в Arduino IDE (читай [FAQ](#chapter-5))
   + **dimmer_timer** - показанная в видео прошивка для 1 канала, с таймеромм и потенциометром
   + **dimmer_10ch** - прошивка для 10ти канального диммера с таймером, для платы из видео
   + **dimmer_delay** - версия, часто встречающаяся в интернете, с задержками. Чисто для ознакомления
+- **Schematics&PCB** - схемы и печатки. Весь проект полностью находится здесь https://easyeda.com/beragumbo/AC_Dimmer-76ae9ae002a64ab28c81e22fb88a56ab
 
 <a id="chapter-2"></a>
 ## Схема питания от USB
