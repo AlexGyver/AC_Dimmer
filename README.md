@@ -8,7 +8,7 @@
 * [FAQ](#chapter-5)
 * [Полезная информация](#chapter-6)
 * [Мой сайт](http://alexgyver.ru/)
-* [Мой YouTube канал](http://alexgyver.ru/git_banner.jpg)](https://www.youtube.com/channel/UCgtAOyEQdAyjvm9ATCi_Aig?sub_confirmation=1)
+* [Мой YouTube канал](https://www.youtube.com/channel/UCgtAOyEQdAyjvm9ATCi_Aig?sub_confirmation=1)
 
 <a id="chapter-0"></a>
 ## Описание проекта
