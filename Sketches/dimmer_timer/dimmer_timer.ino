@@ -1,56 +1,60 @@
 /*
-   Диммер переменки на Arduino. Симистор через оптопару
-   подключен к 4 пину, детектор нуля ко 2 пину.
-   Переменная Dimmer - величина диммирования, от 0 до 255
-   В этом коде на пин А0 подключен потенциометр для управления яркостью
-   Также можно вводить число для переменной Dimmer через 
-   монитор порта, для этого в лупе надо раскомментировать код
+   немного упростил твой код
 */
+
+#include <Arduino.h>
+#include <CyberLib.h>
 
 #define dimPin 4
 #define zeroPin 2
-#include <CyberLib.h> // шустрая библиотека для таймера
-volatile byte tic, Dimmer;
 
-void setup() {
-  Serial.begin(9600);
-  pinMode(dimPin, OUTPUT);
-  digitalWrite(dimPin, 0);
-  pinMode(zeroPin, INPUT);                 // настраиваем порт на вход для отслеживания прохождения сигнала через ноль
-  attachInterrupt(0, detect_up, FALLING);  // настроить срабатывание прерывания interrupt0 на pin 2 на низкий уровень
+uint8_t missTicsCount;
+uint8_t dimmer = 128;//for example
 
-  StartTimer1(timer_interrupt, 40);        // время для одного разряда ШИМ
-  StopTimer1();                            // остановить таймер
+bool firstStart = true;//for property enable interrupt
+
+void setup()
+{
+	Serial.begin(57600);
+
+	pinMode(dimPin, OUTPUT);
+	pinMode(zeroPin, INPUT);
+	digitalWrite(dimPin, 0);
+
+	attachInterrupt(0, detectZero, RISING);
 }
 
-void loop() {
-  /*
-    раскомментировать для ввода числа диммирования чеерез монитор порта
-    while (Serial.available()) {
-    Dimmer11 = Serial.parseInt();
-    Serial.println(Dimmer11);
-    }
-  */
-  Dimmer = map(analogRead(0), 0, 1023, 240, 0);
+void makeOutPower()
+{
+	missTicsCount++;
+
+	if (missTicsCount >= dimmer)
+	{
+		digitalWrite(dimPin, 1);
+	}
+	else
+	{
+		digitalWrite(dimPin, 0);
+	}
 }
 
-//----------------------ОБРАБОТЧИКИ ПРЕРЫВАНИЙ--------------------------
-void timer_interrupt() {       // прерывания таймера срабатывают каждые 40 мкс
-  tic++;                       // счетчик
-  if (tic > Dimmer)            // если настало время включать ток
-    digitalWrite(dimPin, 1);   // врубить ток
+void  detectZero()
+{
+	if (firstStart)
+	{
+		firstStart = false;
+
+		StartTimer1(makeOutPower, 40);//~40mkS - one discrete period (10mS/255)
+	}
+	else
+	{
+		RestartTimer1();
+	}
+
+	missTicsCount = 0;
 }
 
-void  detect_up() {    // обработка внешнего прерывания на пересекание нуля снизу
-  tic = 0;                                  // обнулить счетчик
-  ResumeTimer1();                           // перезапустить таймер
-  attachInterrupt(0, detect_down, RISING);  // перенастроить прерывание
+void loop()
+{
+	dimmer = map(analogRead(0), 0, 1023, 240, 0);//for example
 }
-
-void  detect_down() {  // обработка внешнего прерывания на пересекание нуля сверху
-  tic = 0;                                  // обнулить счетчик
-  StopTimer1();                             // остановить таймер
-  digitalWrite(dimPin, 0);                  // вырубить ток
-  attachInterrupt(0, detect_up, FALLING);   // перенастроить прерывание
-}
-//----------------------ОБРАБОТЧИКИ ПРЕРЫВАНИЙ--------------------------
