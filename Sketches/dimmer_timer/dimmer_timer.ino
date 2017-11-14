@@ -3,14 +3,14 @@
    подключен к 4 пину, детектор нуля ко 2 пину.
    Переменная Dimmer - величина диммирования, от 0 до 255
    В этом коде на пин А0 подключен потенциометр для управления яркостью
-   Также можно вводить число для переменной Dimmer через 
+   Также можно вводить число для переменной Dimmer через
    монитор порта, для этого в лупе надо раскомментировать код
 */
 
 #define dimPin 4
 #define zeroPin 2
 #include <CyberLib.h> // шустрая библиотека для таймера
-volatile byte tic, Dimmer;
+volatile int tic, Dimmer;
 
 void setup() {
   Serial.begin(9600);
@@ -21,17 +21,20 @@ void setup() {
 
   StartTimer1(timer_interrupt, 40);        // время для одного разряда ШИМ
   StopTimer1();                            // остановить таймер
+
+  Serial.println("Start");
 }
 
 void loop() {
-  /*
-    раскомментировать для ввода числа диммирования чеерез монитор порта
-    while (Serial.available()) {
-    Dimmer11 = Serial.parseInt();
-    Serial.println(Dimmer11);
-    }
-  */
-  Dimmer = map(analogRead(0), 0, 1023, 240, 0);
+
+  // раскомментировать для ввода числа диммирования чеерез монитор порта (0 - 255)
+  if (Serial.available()) {
+    Dimmer = Serial.parseInt();
+    Serial.println(Dimmer);
+  }
+  
+  // раскомментировать для управления потенциометром (аналоговый А0)
+  // Dimmer = map(analogRead(0), 0, 1023, 240, 0);
 }
 
 //----------------------ОБРАБОТЧИКИ ПРЕРЫВАНИЙ--------------------------
