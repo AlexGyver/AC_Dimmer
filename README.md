@@ -10,7 +10,6 @@
 * [Мой сайт](http://alexgyver.ru/)
 * [Основной YouTube канал](https://www.youtube.com/channel/UCgtAOyEQdAyjvm9ATCi_Aig?sub_confirmation=1)
 * [YouTube канал про Arduino](https://www.youtube.com/channel/UC4axiS76D784-ofoTdo5zOA?sub_confirmation=1)
-
 <a id="chapter-0"></a>
 ## Описание проекта
 Диммер переменки на Arduino, управляем симистором, опираясь на таймер timer1 и детектор нуля. Вся высоковольтная часть развязана с логической, все подробности смотрите на схемах.
