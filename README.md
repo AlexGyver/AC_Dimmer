@@ -38,6 +38,10 @@
 
 <a id="chapter-3"></a>
 ## Материалы и компоненты
+* Arduino NANO https://ali.ski/tc-c3
+* Макетка https://ali.ski/ITwkbK
+* Линейный потенциометр https://ali.ski/LasUn
+
 РАССЫПУХА
 * Симистор - любой на нужный ток, корпус TO-220AB
   + 4 Ампера https://www.chipdip.ru/product/bt136-600d
@@ -49,7 +53,7 @@
   + PC814 https://www.chipdip.ru/product/pc814-fairchild
 * Резистор 51 кОм, 0.5 или 1 Вт
 * Резисторы 220 Ом, 10 кОм, 1 кОм
-* Клеммники 5 мм http://ali.ski/UCZN8
+* Клеммники 5 мм https://ali.ski/3cMlin
 
 
 ## Вам скорее всего пригодится
