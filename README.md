@@ -38,10 +38,6 @@
 
 <a id="chapter-3"></a>
 ## Материалы и компоненты
-* Arduino NANO http://ali.pub/1qqtjx
-* Макетка http://ali.pub/im4fk
-* Линейный потенциометр http://ali.pub/1rcv5g
-
 РАССЫПУХА
 * Симистор - любой на нужный ток, корпус TO-220AB
   + 4 Ампера https://www.chipdip.ru/product/bt136-600d
